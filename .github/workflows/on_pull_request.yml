@@ -20,6 +20,6 @@ jobs:
         run: echo "svc=$(echo ${{ github.ref_name }} | cut -d/ -f 2)" >> $GITHUB_OUTPUT
 
       - name: Test
-        uses: 'Rusbenk/rusbeckend/.github/workflows/.github/workflows/test.yml'
+        uses: 'Rusbenk/rusbeckend/.github/workflows/test.yml'
         with:
           service: ${{ steps.svc-name.outputs.svc }}
