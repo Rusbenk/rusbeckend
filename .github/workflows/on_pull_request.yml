@@ -11,6 +11,7 @@ jobs:
 
 
   test:
+    needs: setup
     uses: ./.github/workflows/test.yml
     with:
       service: ${{ jobs.setup.outputs.svc }}
