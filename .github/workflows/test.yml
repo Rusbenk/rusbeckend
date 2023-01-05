@@ -1,5 +1,5 @@
 name: test-service
-run-name: Test ${{ input.service }}
+run-name: Test ${{ inputs.service }}
 
 on:
   workflow_call:
