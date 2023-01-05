@@ -6,20 +6,11 @@ on:
     types: [ opened, reopened, synchronize ]
 
 jobs:
+  setup:
+    uses: ./.github/workflows/setup.yml
+
+
   test:
-    name: Run tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fetch Repository
-        uses: actions/checkout@v3
-
-      - run: ls -la
-
-      - name: Service Name
-        id: svc-name
-        run: echo "svc=$(echo ${{ github.ref_name }} | cut -d/ -f 2)" >> $GITHUB_OUTPUT
-
-      - name: Test
-        uses: 'Rusbenk/rusbeckend/.github/workflows/test.yml'
-        with:
-          service: ${{ steps.svc-name.outputs.svc }}
+    uses: './.github/workflows/test.yml'
+    with:
+      service: ${{ jobs.setup.outputs.svc }}
