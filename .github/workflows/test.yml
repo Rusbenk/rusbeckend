@@ -2,7 +2,7 @@ name: test-service
 run-name: Test ${{ input.service }}
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       service:
         description: 'Service Name'
