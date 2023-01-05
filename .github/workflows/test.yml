@@ -1,0 +1,24 @@
+name: build-service
+run-name: Build Service
+
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: 'Service Name'
+        required: true
+        type: string
+
+jobs:
+build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Repository
+        uses: actions/checkout@v3
+      - name: Setup Cargo
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Run tests
+        run: cargo test -p ${{ inputs.service-name }}
