@@ -18,6 +18,9 @@ jobs:
       - name: Fetch Repository
         uses: actions/checkout@v3
 
+      - name: Show Service Name
+        run: echo ${{ github.ref_name }} {{ github.ref }}
+
       - name: Service Name
         id: svc-name
         run: echo "svc=$(echo ${{ github.ref_name }} | cut -d/ -f 2)" >> $GITHUB_OUTPUT
