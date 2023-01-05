@@ -14,14 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Test Runner
     steps:
-      steps:
-        - name: Fetch Repository
-          uses: actions/checkout@v3
+      - name: Fetch Repository
+        uses: actions/checkout@v3
 
-        - name: Setup Cargo
-          uses: actions-rs/toolchain@v1
-          with:
-            toolchain: stable
+      - name: Setup Cargo
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
 
-        - name: Run tests
-          run: cargo test -p ${{ inputs.service-name }}
+      - name: Run tests
+        run: cargo test -p ${{ inputs.service-name }}
