@@ -2,7 +2,7 @@ name: setup
 run-name: Setting Up
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   setup:
