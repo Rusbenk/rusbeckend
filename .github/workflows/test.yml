@@ -10,15 +10,19 @@ on:
         type: string
 
 jobs:
-build:
+  defaults:
     runs-on: ubuntu-latest
+  runner:
+    name: Test Runner
     steps:
-      - name: Fetch Repository
-        uses: actions/checkout@v3
-      - name: Setup Cargo
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      runs-on: ubuntu-latest
+      steps:
+        - name: Fetch Repository
+          uses: actions/checkout@v3
+        - name: Setup Cargo
+          uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
 
-      - name: Run tests
-        run: cargo test -p ${{ inputs.service-name }}
+        - name: Run tests
+          run: cargo test -p ${{ inputs.service-name }}

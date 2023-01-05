@@ -3,17 +3,22 @@ run-name: Pull Request Actions
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [ opened, reopened, synchronize ]
 
 jobs:
-  - name: Fetch Repository
-    uses: actions/checkout@v3
+  defaults:
+    runs-on: ubuntu-latest
 
-  - name: Service Name
-    id: svc-name
-    run: echo "svc=$(echo ${{ github.ref_name }} | cut -d/ -f 2)" >> $GITHUB_OUTPUT
+  test:
+    steps:
+      - name: Fetch Repository
+        uses: actions/checkout@v3
 
-  - name: Test
-    uses: './.github/workflows/test.yml'
-    with:
-      service: ${{ steps.svc-name.outputs.svc }}
+      - name: Service Name
+        id: svc-name
+        run: echo "svc=$(echo ${{ github.ref_name }} | cut -d/ -f 2)" >> $GITHUB_OUTPUT
+
+      - name: Test
+        uses: './.github/workflows/test.yml'
+        with:
+          service: ${{ steps.svc-name.outputs.svc }}
