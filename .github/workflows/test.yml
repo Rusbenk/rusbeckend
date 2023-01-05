@@ -1,5 +1,5 @@
 name: test-service
-run-name: test-service
+run-name: Test ${{ input.service }}
 
 on:
   workflow_dispatch:
@@ -10,9 +10,8 @@ on:
         type: string
 
 jobs:
-  defaults:
-    runs-on: ubuntu-latest
   runner:
+    runs-on: ubuntu-latest
     name: Test Runner
     steps:
       runs-on: ubuntu-latest
