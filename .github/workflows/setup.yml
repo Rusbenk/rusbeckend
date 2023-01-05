@@ -3,6 +3,8 @@ run-name: Setting Up
 
 on:
   workflow_call:
+    outputs:
+      svc: ${{ jobs.setup.outputs.svc }}
 
 jobs:
   setup:
