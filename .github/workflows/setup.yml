@@ -8,6 +8,8 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     name: Setup service
+    outputs:
+      svc: ${{ steps.svc-name.outputs.svc }}
     steps:
       - name: Fetch Repository
         uses: actions/checkout@v3
