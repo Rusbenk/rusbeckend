@@ -1,5 +1,5 @@
-name: build-service
-run-name: Build Service
+name: test-service
+run-name: test-service
 
 on:
   workflow_dispatch:
