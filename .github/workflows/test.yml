@@ -17,6 +17,7 @@ jobs:
       steps:
         - name: Fetch Repository
           uses: actions/checkout@v3
+
         - name: Setup Cargo
           uses: actions-rs/toolchain@v1
           with:
