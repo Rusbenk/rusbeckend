@@ -3,7 +3,7 @@ run-name: Pull Request Actions
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, reopened, synchronize]
 
 jobs:
   - name: Fetch Repository
