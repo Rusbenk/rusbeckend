@@ -23,4 +23,4 @@ jobs:
           toolchain: stable
 
       - name: Run tests
-        run: cargo test -p ${{ inputs.service-name }}
+        run: cargo test -p ${{ inputs.service }}
