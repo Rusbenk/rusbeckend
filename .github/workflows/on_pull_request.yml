@@ -1,0 +1,17 @@
+name: pr-action
+run-name: Pull Request Actions
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  setup:
+    uses: ./.github/workflows/setup.yml
+
+
+  test:
+    needs: setup
+    uses: ./.github/workflows/test.yml
+    with:
+      service: ${{ needs.setup.outputs.svc }}

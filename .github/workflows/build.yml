@@ -1,0 +1,14 @@
+name: build-service
+run-name: Build Service
+
+on:
+  workflow_dispatch:
+    inputs:
+      service-name:
+        description: 'Service Name'
+        required: true
+        type: string
+      bin-name:
+        description: 'Binary Name'
+        required: true
+        type: string

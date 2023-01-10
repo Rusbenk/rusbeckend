@@ -1,0 +1,26 @@
+name: test-service
+run-name: Test ${{ inputs.service }}
+
+on:
+  workflow_call:
+    inputs:
+      service:
+        description: 'Service Name'
+        required: true
+        type: string
+
+jobs:
+  runner:
+    runs-on: ubuntu-latest
+    name: Test Runner
+    steps:
+      - name: Fetch Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Cargo
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Run tests
+        run: cargo test -p ${{ inputs.service }}

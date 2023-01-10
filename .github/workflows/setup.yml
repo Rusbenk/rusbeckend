@@ -1,0 +1,23 @@
+name: setup
+run-name: Setting Up
+
+on:
+  workflow_call:
+    outputs:
+      svc:
+        description: Service name
+        value: ${{ jobs.setup.outputs.svc }}
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Setup service
+    outputs:
+      svc: ${{ steps.svc-name.outputs.svc }}
+    steps:
+      - name: Fetch Repository
+        uses: actions/checkout@v3
+
+      - name: Service Name
+        id: svc-name
+        run: echo "svc=$(echo ${{ github.head_ref }} | cut -d/ -f 2)" >> $GITHUB_OUTPUT
