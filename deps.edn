@@ -1,7 +1,16 @@
-{:aliases  {:dev {:extra-paths ["development/src"]
-                  :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}}}
+{:aliases  {:dev {:extra-paths ["development/src"
+                                ;; Bases
+                                "bases/cerberus-api/src"]
+                  :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
 
-            :test {:extra-paths []}
+                               ;; Web Server
+                               metosin/malli {:mvn/version "0.10.1"}
+                               metosin/reitit {:mvn/version "0.5.18"}
+                               ring/ring-core {:mvn/version "1.9.6"}
+                               ring/ring-jetty-adapter {:mvn/version "1.9.6"}}}
+
+            :test {:extra-paths [;; Bases
+                                 "bases/cerberus-api/test"]}
 
             :poly {:main-opts ["-m" "polylith.clj.core.poly-cli.core"]
                    :extra-deps {polyfy/polylith
