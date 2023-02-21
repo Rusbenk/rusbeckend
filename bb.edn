@@ -1,0 +1,22 @@
+{:tasks
+ {apply-manifests
+  (letfn [(apply-manifest [manifest]
+            (shell "kubectl apply -f" (str "./deployment/local/" manifest)))]
+    (apply-manifest "ingress.yml")
+    (apply-manifest "auth/db.yml"))
+
+  init-resources
+  (do
+    (shell "k3d cluster create --config ./deployment/local/cluster.yml")
+    (run 'apply-manifests))
+
+  shutdown-resources (shell "k3d cluster delete --config ./deployment/local/cluster.yml")
+
+  get-node-ip
+  {:requires ([clojure.pprint :as pp]
+              [clojure.string :as str])
+   :task
+   (->> (shell {:out :string} "kubectl get nodes k3d-rusbenk-agent-0 -o jsonpath='{.status.addresses[0].address}'")
+     :out
+     (format "use %s to connect to your app")
+     println)}}}
