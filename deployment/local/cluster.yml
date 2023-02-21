@@ -1,0 +1,16 @@
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+metadata:
+  name: rusbenk
+
+servers: 3
+agents: 2
+
+ports:
+  - port: "8081:80"
+    nodeFilters:
+      - loadbalancer
+
+options:
+  k3d:
+    wait: true
