@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: auth-db
+  name: auth-db-config
 data:
   POSTGRES_USER: fusionauth
   POSTGRES_DB: fusionauth
@@ -11,7 +11,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: auth-db
+  name: auth-db-secrets
 type: Opaque
 stringData:
   POSTGRES_PASSWORD: fusionauth
@@ -43,9 +43,9 @@ spec:
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
-                name: auth-db
+                name: auth-db-secrets
             - configMapRef:
-                name: auth-db
+                name: auth-db-config
           ports:
             - containerPort: 5432
       restartPolicy: Always
