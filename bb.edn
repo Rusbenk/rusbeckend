@@ -1,9 +1,17 @@
-{:tasks
- {apply-manifests
+{:deps {org.clojars.civa86/pretty.cli {:mvn/version "1.0.1"}}
+ :tasks
+ {:requires ([pretty.cli.colors :as pc])
+
+  apply-manifests
   (letfn [(apply-manifest [manifest]
             (shell "kubectl apply -f" (str "./deployment/local/" manifest)))]
-    (apply-manifest "ingress.yml")
-    (apply-manifest "auth/db.yml"))
+    (println (pc/cyan-bg (pc/black "IAM resources")))
+    (apply-manifest "auth/db.yml")
+    (apply-manifest "auth/iam.yml")
+
+
+    (println (pc/cyan-bg (pc/black "Ingress")))
+    (apply-manifest "ingress.yml"))
 
   init-resources
   (do
